@@ -1,0 +1,466 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://point_button.gd" type="Script" id=1]
+[ext_resource path="res://bezier.gd" type="Script" id=2]
+[ext_resource path="res://main.gd" type="Script" id=3]
+[ext_resource path="res://ui/GREEN_theme.tres" type="Theme" id=4]
+[ext_resource path="res://options.gd" type="Script" id=5]
+[ext_resource path="res://ui/Roboto-Bold.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 34
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("RichTextLabel:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("options_button:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "intro"
+length = 4.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("RichTextLabel:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.7, 4.3, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("options_button:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="main" type="CanvasLayer"]
+script = ExtResource( 3 )
+p0 = NodePath("CenterContainer/Control/point0")
+p1 = NodePath("CenterContainer/Control/point1")
+p2 = NodePath("CenterContainer/Control/point2")
+p3 = NodePath("CenterContainer/Control/point3")
+bezier_calculator = NodePath("bezier")
+
+[node name="bezier" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Control" type="Control" parent="CenterContainer"]
+margin_left = 380.0
+margin_top = 250.0
+margin_right = 380.0
+margin_bottom = 250.0
+
+[node name="point0" type="Button" parent="CenterContainer/Control"]
+anchor_left = 3.0
+anchor_top = -57.0
+anchor_right = 3.0
+anchor_bottom = -57.0
+margin_left = -295.0
+margin_top = -17.0
+margin_right = -255.0
+margin_bottom = 23.0
+focus_mode = 0
+mouse_default_cursor_shape = 6
+enabled_focus_mode = 0
+flat = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="point1" type="Button" parent="CenterContainer/Control"]
+anchor_left = 3.0
+anchor_top = -57.0
+anchor_right = 3.0
+anchor_bottom = -57.0
+margin_left = -163.0
+margin_top = -173.0
+margin_right = -123.0
+margin_bottom = -133.0
+focus_mode = 0
+mouse_default_cursor_shape = 6
+enabled_focus_mode = 0
+flat = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="point2" type="Button" parent="CenterContainer/Control"]
+anchor_left = 3.0
+anchor_top = -57.0
+anchor_right = 3.0
+anchor_bottom = -57.0
+margin_left = 120.0
+margin_top = 161.0
+margin_right = 160.0
+margin_bottom = 201.0
+focus_mode = 0
+mouse_default_cursor_shape = 6
+enabled_focus_mode = 0
+flat = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="point3" type="Button" parent="CenterContainer/Control"]
+anchor_left = 3.0
+anchor_top = -57.0
+anchor_right = 3.0
+anchor_bottom = -57.0
+margin_left = 265.0
+margin_top = -7.0
+margin_right = 305.0
+margin_bottom = 33.0
+focus_mode = 0
+mouse_default_cursor_shape = 6
+enabled_focus_mode = 0
+flat = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="options" type="TabContainer" parent="."]
+visible = false
+anchor_right = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = 107.0
+theme = ExtResource( 4 )
+script = ExtResource( 5 )
+bezier = NodePath("../bezier")
+
+[node name="cubic bézier" type="Panel" parent="options"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 39.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="options/cubic bézier"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 4 )
+custom_constants/separation = 5
+alignment = 1
+
+[node name="bezier_visible" type="CheckButton" parent="options/cubic bézier/HBoxContainer"]
+margin_left = 139.0
+margin_right = 250.0
+margin_bottom = 53.0
+shortcut_in_tooltip = false
+pressed = true
+text = "visible"
+align = 1
+
+[node name="spacer" type="Control" parent="options/cubic bézier/HBoxContainer"]
+margin_left = 255.0
+margin_right = 265.0
+margin_bottom = 53.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="Label" type="Label" parent="options/cubic bézier/HBoxContainer"]
+margin_left = 270.0
+margin_top = 10.0
+margin_right = 327.0
+margin_bottom = 42.0
+text = "width"
+align = 2
+valign = 1
+
+[node name="bezier_width" type="SpinBox" parent="options/cubic bézier/HBoxContainer"]
+margin_left = 332.0
+margin_top = 10.0
+margin_right = 420.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 40, 0 )
+size_flags_horizontal = 5
+size_flags_vertical = 6
+min_value = 1.0
+max_value = 30.0
+value = 3.0
+align = 1
+
+[node name="spacer2" type="Control" parent="options/cubic bézier/HBoxContainer"]
+margin_left = 425.0
+margin_right = 435.0
+margin_bottom = 53.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="Label2" type="Label" parent="options/cubic bézier/HBoxContainer"]
+margin_left = 440.0
+margin_top = 10.0
+margin_right = 497.0
+margin_bottom = 42.0
+text = "steps"
+align = 2
+valign = 1
+
+[node name="bezier_steps" type="SpinBox" parent="options/cubic bézier/HBoxContainer"]
+margin_left = 502.0
+margin_top = 10.0
+margin_right = 590.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 40, 0 )
+size_flags_horizontal = 5
+size_flags_vertical = 6
+min_value = 1.0
+max_value = 50.0
+value = 30.0
+align = 1
+
+[node name="quadratic béziers" type="Panel" parent="options"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 39.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="options/quadratic béziers"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 4 )
+custom_constants/separation = 5
+alignment = 1
+
+[node name="quadratic_visible" type="CheckButton" parent="options/quadratic béziers/HBoxContainer"]
+margin_left = 224.0
+margin_right = 335.0
+margin_bottom = 53.0
+shortcut_in_tooltip = false
+text = "visible"
+align = 1
+
+[node name="spacer" type="Control" parent="options/quadratic béziers/HBoxContainer"]
+margin_left = 340.0
+margin_right = 350.0
+margin_bottom = 53.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="Label" type="Label" parent="options/quadratic béziers/HBoxContainer"]
+margin_left = 355.0
+margin_top = 10.0
+margin_right = 412.0
+margin_bottom = 42.0
+text = "width"
+align = 2
+valign = 1
+
+[node name="quadratic_width" type="SpinBox" parent="options/quadratic béziers/HBoxContainer"]
+margin_left = 417.0
+margin_top = 10.0
+margin_right = 505.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 40, 0 )
+size_flags_horizontal = 5
+size_flags_vertical = 6
+min_value = 1.0
+max_value = 30.0
+value = 2.0
+align = 1
+
+[node name="quadratic fillers" type="Panel" parent="options"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 39.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="options/quadratic fillers"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 4 )
+custom_constants/separation = 5
+alignment = 1
+
+[node name="quadratic_filler_visible" type="CheckButton" parent="options/quadratic fillers/HBoxContainer"]
+margin_left = 224.0
+margin_right = 335.0
+margin_bottom = 53.0
+shortcut_in_tooltip = false
+pressed = true
+text = "visible"
+align = 1
+
+[node name="spacer" type="Control" parent="options/quadratic fillers/HBoxContainer"]
+margin_left = 340.0
+margin_right = 350.0
+margin_bottom = 53.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="Label" type="Label" parent="options/quadratic fillers/HBoxContainer"]
+margin_left = 355.0
+margin_top = 10.0
+margin_right = 412.0
+margin_bottom = 42.0
+text = "width"
+align = 2
+valign = 1
+
+[node name="quadratic_filler_width" type="SpinBox" parent="options/quadratic fillers/HBoxContainer"]
+margin_left = 417.0
+margin_top = 10.0
+margin_right = 505.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 40, 0 )
+size_flags_horizontal = 5
+size_flags_vertical = 6
+min_value = 1.0
+max_value = 30.0
+value = 1.0
+align = 1
+
+[node name="points" type="Panel" parent="options"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 39.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="options/points"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 4 )
+custom_constants/separation = 5
+alignment = 1
+
+[node name="circle_visible" type="CheckButton" parent="options/points/HBoxContainer"]
+margin_left = 221.0
+margin_right = 332.0
+margin_bottom = 53.0
+shortcut_in_tooltip = false
+pressed = true
+text = "visible"
+align = 1
+
+[node name="spacer" type="Control" parent="options/points/HBoxContainer"]
+margin_left = 337.0
+margin_right = 347.0
+margin_bottom = 53.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="Label" type="Label" parent="options/points/HBoxContainer"]
+margin_left = 352.0
+margin_top = 10.0
+margin_right = 415.0
+margin_bottom = 42.0
+text = "radius"
+align = 2
+valign = 1
+
+[node name="circle_radius" type="SpinBox" parent="options/points/HBoxContainer"]
+margin_left = 420.0
+margin_top = 10.0
+margin_right = 508.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 40, 0 )
+size_flags_horizontal = 5
+size_flags_vertical = 6
+min_value = 1.0
+max_value = 30.0
+value = 14.0
+align = 1
+
+[node name="options_button" type="ToolButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -96.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = 44.0
+theme = ExtResource( 4 )
+toggle_mode = true
+text = "options"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -49.0
+mouse_filter = 2
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]move the [color=#15cb92]points[/color] with your mouse"
+visible_characters = 0
+percent_visible = 0.0
+text = "move the points with your mouse"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "intro"
+anims/RESET = SubResource( 2 )
+anims/intro = SubResource( 3 )
+
+[connection signal="button_down" from="CenterContainer/Control/point0" to="CenterContainer/Control/point0" method="_on_point_button_down"]
+[connection signal="button_up" from="CenterContainer/Control/point0" to="CenterContainer/Control/point0" method="_on_point_button_up"]
+[connection signal="button_down" from="CenterContainer/Control/point1" to="CenterContainer/Control/point1" method="_on_point_button_down"]
+[connection signal="button_up" from="CenterContainer/Control/point1" to="CenterContainer/Control/point1" method="_on_point_button_up"]
+[connection signal="button_down" from="CenterContainer/Control/point2" to="CenterContainer/Control/point2" method="_on_point_button_down"]
+[connection signal="button_up" from="CenterContainer/Control/point2" to="CenterContainer/Control/point2" method="_on_point_button_up"]
+[connection signal="button_down" from="CenterContainer/Control/point3" to="CenterContainer/Control/point3" method="_on_point_button_down"]
+[connection signal="button_up" from="CenterContainer/Control/point3" to="CenterContainer/Control/point3" method="_on_point_button_up"]
+[connection signal="toggled" from="options/cubic bézier/HBoxContainer/bezier_visible" to="options" method="_on_bezier_visible_toggled"]
+[connection signal="value_changed" from="options/cubic bézier/HBoxContainer/bezier_width" to="options" method="_on_bezier_width_value_changed"]
+[connection signal="value_changed" from="options/cubic bézier/HBoxContainer/bezier_steps" to="options" method="_on_bezier_steps_value_changed"]
+[connection signal="toggled" from="options/quadratic béziers/HBoxContainer/quadratic_visible" to="options" method="_on_quadratic_visible_toggled"]
+[connection signal="value_changed" from="options/quadratic béziers/HBoxContainer/quadratic_width" to="options" method="_on_quadratic_width_value_changed"]
+[connection signal="toggled" from="options/quadratic fillers/HBoxContainer/quadratic_filler_visible" to="options" method="_on_quadratic_filler_visible_toggled"]
+[connection signal="value_changed" from="options/quadratic fillers/HBoxContainer/quadratic_filler_width" to="options" method="_on_quadratic_filler_width_value_changed"]
+[connection signal="toggled" from="options/points/HBoxContainer/circle_visible" to="options" method="_on_circle_visible_toggled"]
+[connection signal="value_changed" from="options/points/HBoxContainer/circle_radius" to="options" method="_on_circle_radius_value_changed"]
+[connection signal="toggled" from="options_button" to="." method="_on_options_button_toggled"]
